@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TimesheetHelper</title>
+
+    <script type="text/javascript" src="/apps/2.0p4/sdk.js"></script>
+
+    <script type="text/javascript">
+        Rally.onReady(function() {
+            Ext.define('CustomApp', {
+                extend: 'Rally.app.App',
+                componentCls: 'app',
+            
+                launch: function() {
+                    Rally.data.ModelFactory.getModel({
+                                    type: 'Task',
+                                    success: function(model) {
+                                        this.grid = this.add({
+                                            xtype: 'rallygrid',
+                                            model: model,
+                                            columnCfgs: [
+                                                'FormattedID',
+                                                'Name',
+                                                'Owner',
+                                                'State',
+                                                'ToDo'
+                                            ],
+                                            
+                                            storeConfig: {
+                                                filters: [
+                                                    {
+                                                        property: 'Owner',
+                                                        operator: '=',
+                                                        value: this.getContext().getUser()._ref
+                                                    },
+                                                    {
+                                                        property: 'Iteration.StartDate',
+                                                        operator: '<=',
+                                                        value: Rally.util.DateTime.toIsoString(new Date(), false)
+                                                    },
+                                                    {
+                                                        property: 'Iteration.EndDate',
+                                                        operator: '>=',
+                                                        value: Rally.util.DateTime.toIsoString(new Date(), false)
+                                                    }
+                                                ]
+                                            }
+                                        });
+                                    },
+                                    scope: this
+                                });
+                }
+            });
+
+            Rally.launchApp('CustomApp', {
+                name: 'TimesheetHelper'
+            });
+        });
+    </script>
+
+    <style type="text/css">
+        .app {
+             /* Add app styles here */
+        }
+    </style>
+</head>
+<body></body>
+</html>

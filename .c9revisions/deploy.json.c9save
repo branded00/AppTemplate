@@ -1,0 +1,1 @@
+{"ts":1349292612123,"silentsave":true,"restoring":false,"patch":[[{"diffs":[[1,"{\n    \"server\": \"https://rally1.rallydev.com\",\n    \"username\": \"you@domain.com\",\n    \"password\": \"S3cr3t\",\n    \"project\": \"YourProject\"\n}\n"]],"start1":0,"start2":0,"length1":0,"length2":138}]],"length":138}
