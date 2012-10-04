@@ -1,3 +1,9 @@
 .app {
      /* Add app styles here */
+     padding: 5x;
 }
+
+.bad { color: red }
+.ok { color: green }
+
+.attention { font-size: 20px; font-weight: bold; padding-bottom: 5px; }
